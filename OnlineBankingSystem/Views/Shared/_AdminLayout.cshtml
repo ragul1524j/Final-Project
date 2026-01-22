@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - Admin Panel</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:#1877F2;border:0;">
+        <div class="container">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Dashboard", "Home", "AdminApproval")</li>
+                <li>@Html.ActionLink("Pending Approvals", "PendingApprovals", "AdminApproval")</li>
+                <li>@Html.ActionLink("Customers", "GetAllCustomers", "AdminApproval")</li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>@Html.ActionLink("Logout", "Logout", "AdminApproval")</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container body-content" style="margin-top:70px;">
+        @RenderBody()
+    </div>
+
+    <footer class="text-center">
+        <hr />
+        <p>&copy; @DateTime.Now.Year - Online Banking Admin</p>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>
