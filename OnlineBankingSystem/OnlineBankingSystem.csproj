@@ -129,6 +129,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminApprovalController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -179,6 +180,8 @@
       <DependentUpon>BankingDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\AccountRepository.cs" />
+    <Compile Include="Services\AdminService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -248,6 +251,18 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\AdminApproval\AdminLogin.cshtml" />
+    <Content Include="Views\AdminApproval\Home.cshtml" />
+    <Content Include="Views\AdminApproval\PendingApprovals.cshtml" />
+    <Content Include="Views\AdminApproval\ViewDetails.cshtml" />
+    <Content Include="Views\AdminApproval\Approve.cshtml" />
+    <Content Include="Views\AdminApproval\Reject.cshtml" />
+    <Content Include="Views\AdminApproval\GetAllCustomers.cshtml" />
+    <Content Include="Views\AdminApproval\CustomerDetails.cshtml" />
+    <Content Include="Views\AdminApproval\Logout.cshtml" />
+    <Content Include="Views\AdminApproval\AccessDenied.cshtml" />
+    <Content Include="Views\Shared\_Banking.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,17 @@
+﻿@model OnlineBankingSystem.Models.AccountRequest
+@{
+    ViewBag.Title = "Account Request Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr><th>Service Ref No</th><td>@Model.Service_Reference_Number</td></tr>
+    <tr><th>Name</th><td>@Model.First_Name @Model.Last_Name</td></tr>
+    <tr><th>Email</th><td>@Model.Email_Id</td></tr>
+    <tr><th>Mobile</th><td>@Model.Mobile_Number</td></tr>
+    <tr><th>Aadhar</th><td>@Model.Aadhar</td></tr>
+    <tr><th>DOB</th><td>@Model.Date_Of_Birth.ToShortDateString()</td></tr>
+    <tr><th>Address</th><td>@Model.Residential_Address</td></tr>
+</table>
+
+<a href="@Url.Action("PendingApprovals")" class="btn btn-secondary">Back</a>

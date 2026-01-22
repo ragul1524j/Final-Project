@@ -1,36 +1,158 @@
-﻿<!DOCTYPE html>
+﻿﻿@{
+    Layout = null;
+    var appTitle = "Online Banking";
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - @appTitle</title>
+
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .body-content {
+            flex: 1;
+            padding-top: 100px;
+        }
+
+        footer {
+            background-color: #f5f5f5;
+            text-align: center;
+            padding: 10px 0;
+            border-top: 1px solid #ddd;
+            color: #333;
+        }
+
+        .navbar-right > li > a {
+            color: white !important;
+        }
+
+            .navbar-right > li > a:hover {
+                color: white !important;
+                font-weight: 600;
+            }
+
+        .account-info {
+            background-color: #f2f2f2;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+            .account-info h3 {
+                margin-top: 0;
+                font-size: 22px;
+                font-weight: bold;
+            }
+
+            .account-info p {
+                font-size: 18px;
+                color: #000;
+            }
+
+        .greeting {
+            color: white;
+            font-weight: bold;
+            margin-right: 20px;
+            font-size: 16px;
+            padding-top: 8px;
+        }
+    </style>
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: #1877F2; color: white; border: 0px;">
         <div class="container">
-            @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                </ul>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="@Url.Action("Index", "Home")" style="color:white;font-size:24px;font-weight:bold;">@appTitle</a>
             </div>
+
+            <ul class="navbar-collapse collapse">
+                @if (ViewBag.NavType == "UserLoggedIn")
+                {
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Overview", "Index", "Dashboard")</li>
+                            <li>@Html.ActionLink("Account Summary", "AccountSummary", "Dashboard")</li>
+                            <li>@Html.ActionLink("Account Statement", "AccountStatement", "Dashboard")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <div class="dropdown-toggle" data-toggle="dropdown">Transfers <b class="caret"></b>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Add Beneficiary", "AddPayee", "Transfer")</li>
+                                <li>@Html.ActionLink("View Beneficiaries", "ViewBeneficiaries", "Transfer")</li>
+                                <li>@Html.ActionLink("NEFT", "NEFT", "Transfer")</li>
+                                <li>@Html.ActionLink("RTGS", "RTGS", "Transfer")</li>
+                                <li>@Html.ActionLink("IMPS", "IMPS", "Transfer")</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>@Html.ActionLink("Change Password", "ChangePassword", "Dashboard")</li>
+                    <li class="greeting">Hello @ViewBag.Name</li>
+                    <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
+                }
+                else if (ViewBag.NavType == "Adminloginview" || ViewBag.NavType == "Newnetbankingregistrationview" || ViewBag.NavType == "Forgotuseridview" || ViewBag.NavType == "Forgotpasswordview")
+                {
+                    <li>@Html.ActionLink("Customer Login", "CustomerLogin", "InternetBanking")</li>
+                    <li>@Html.ActionLink("Create a Account", "Register", "Account")</li>
+                    <li>@Html.ActionLink("Support", "Support", "Banking")</li>
+                }
+                else if (ViewBag.NavType == "Newaccountregistrationview")
+                {
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Support", "Support", "Banking")</li>
+                }
+                else if (ViewBag.NavType == "Userloginview")
+                {
+                    <li>@Html.ActionLink("Create a Account", "Register", "Account")</li>
+                    <li>@Html.ActionLink("Support", "Support", "Banking")</li>
+                }
+                else
+                {
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Create a Account", "Register", "Account")</li>
+                }
+            </ul>
         </div>
-    </nav>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
     </div>
+
+    <div class="container body-content">
+        @if (ViewBag.NavType == "UserLoggedIn")
+        {
+            <div class="account-info">
+                <h3>Account Holder</h3>
+                <p><strong>Name:</strong> @ViewBag.Name</p>
+                <p><strong>Account No:</strong> @ViewBag.AccountNumber</p>
+                <p><strong>Email:</strong> @ViewBag.Email</p>
+                <p><strong>Phone:</strong> @ViewBag.Phone</p>
+            </div>
+        }
+
+        @RenderBody()
+    </div>
+
+    <footer>
+        <p>&copy; @DateTime.Now.Year - Online Banking</p>
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
