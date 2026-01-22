@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BankingDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AccountRequest">
+    <Key>
+      <PropertyRef Name="Service_Reference_Number" />
+    </Key>
+    <Property Name="Service_Reference_Number" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="5" />
+    <Property Name="First_Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Middle_Name" Type="varchar" MaxLength="50" />
+    <Property Name="Last_Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Father_Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Gender" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Date_Of_Birth" Type="date" Nullable="false" />
+    <Property Name="Mobile_Number" Type="bigint" Nullable="false" />
+    <Property Name="Email_Id" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Aadhar" Type="char" MaxLength="12" Nullable="false" />
+    <Property Name="Residential_Address" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Permanent_Address" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Occupation_Type" Type="varchar" MaxLength="50" />
+    <Property Name="Source_Of_Income" Type="varchar" MaxLength="50" />
+    <Property Name="Gross_Annual_Income" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Opt_Debit_Card" Type="bit" />
+    <Property Name="Opt_Net_Banking" Type="bit" />
+    <Property Name="Status" Type="varchar" MaxLength="20" />
+    <Property Name="Requested_At" Type="datetime" />
+    <Property Name="Approved_At" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Accounts">
+    <Key>
+      <PropertyRef Name="Account_Number" />
+    </Key>
+    <Property Name="Account_Number" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Customer_Id" Type="int" Nullable="false" />
+    <Property Name="Account_Type" Type="varchar" MaxLength="20" />
+    <Property Name="Balance" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Is_Active" Type="bit" />
+    <Property Name="Created_At" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="Admin_Id" />
+    </Key>
+    <Property Name="Admin_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email_Id" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Created_At" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Customer_Id" />
+    </Key>
+    <Property Name="Customer_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Service_Reference_Number" Type="int" />
+    <Property Name="Full_Name" Type="varchar" MaxLength="150" />
+    <Property Name="Mobile_Number" Type="bigint" />
+    <Property Name="Email_Id" Type="varchar" MaxLength="100" />
+    <Property Name="Aadhar" Type="char" MaxLength="12" />
+    <Property Name="Created_At" Type="datetime" />
+  </EntityType>
+  <EntityType Name="DebitCards">
+    <Key>
+      <PropertyRef Name="Debit_Card_Number" />
+    </Key>
+    <Property Name="Debit_Card_Number" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Account_Number" Type="bigint" />
+    <Property Name="Expiry_Date" Type="date" />
+    <Property Name="CVV" Type="int" />
+    <Property Name="Is_Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="InternetBanking">
+    <Key>
+      <PropertyRef Name="User_Id" />
+    </Key>
+    <Property Name="User_Id" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Customer_Id" Type="int" />
+    <Property Name="Account_Number" Type="bigint" />
+    <Property Name="Login_Password" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Transaction_Password" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Failed_Attempts" Type="int" />
+    <Property Name="Is_Locked" Type="bit" />
+    <Property Name="Locked_Time" Type="datetime" />
+    <Property Name="Last_Login" Type="datetime" />
+  </EntityType>
+  <EntityType Name="OtpRequests">
+    <Key>
+      <PropertyRef Name="Otp_Id" />
+    </Key>
+    <Property Name="Otp_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="User_Id" Type="varchar" MaxLength="30" />
+    <Property Name="Otp" Type="char" MaxLength="6" />
+    <Property Name="Created_Time" Type="datetime" />
+    <Property Name="Expires_At" Type="datetime" />
+    <Property Name="Is_Used" Type="bit" />
+  </EntityType>
+  <EntityType Name="Payees">
+    <Key>
+      <PropertyRef Name="Payee_Id" />
+    </Key>
+    <Property Name="Payee_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="User_Id" Type="varchar" MaxLength="30" />
+    <Property Name="Beneficiary_Name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Beneficiary_Account_Number" Type="bigint" Nullable="false" />
+    <Property Name="Nickname" Type="varchar" MaxLength="50" />
+    <Property Name="Created_At" Type="datetime" />
+  </EntityType>
+  <EntityType Name="SupportMessages">
+    <Key>
+      <PropertyRef Name="Message_Id" />
+    </Key>
+    <Property Name="Message_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="User_Id" Type="varchar" MaxLength="30" />
+    <Property Name="Subject" Type="varchar" MaxLength="200" />
+    <Property Name="Message" Type="text" />
+    <Property Name="Sent_At" Type="datetime" />
+    <Property Name="Admin_Reply" Type="text" />
+    <Property Name="Replied_At" Type="datetime" />
+    <Property Name="Status" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Transactions">
+    <Key>
+      <PropertyRef Name="Transaction_Id" />
+    </Key>
+    <Property Name="Transaction_Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="From_Account" Type="bigint" />
+    <Property Name="To_Account" Type="bigint" />
+    <Property Name="Transaction_Mode" Type="varchar" MaxLength="10" />
+    <Property Name="Transaction_Type" Type="varchar" MaxLength="10" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Transaction_Date" Type="datetime" />
+    <Property Name="Status" Type="varchar" MaxLength="20" />
+    <Property Name="Remarks" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK__Accounts__Custom__4BAC3F29">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Customer_Id" />
+      </Principal>
+      <Dependent Role="Accounts">
+        <PropertyRef Name="Customer_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Customer__Servic__44FF419A">
+    <End Role="AccountRequest" Type="Self.AccountRequest" Multiplicity="0..1" />
+    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AccountRequest">
+        <PropertyRef Name="Service_Reference_Number" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="Service_Reference_Number" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DebitCard__Accou__66603565">
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
+    <End Role="DebitCards" Type="Self.DebitCards" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accounts">
+        <PropertyRef Name="Account_Number" />
+      </Principal>
+      <Dependent Role="DebitCards">
+        <PropertyRef Name="Account_Number" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__InternetB__Accou__534D60F1">
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
+    <End Role="InternetBanking" Type="Self.InternetBanking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accounts">
+        <PropertyRef Name="Account_Number" />
+      </Principal>
+      <Dependent Role="InternetBanking">
+        <PropertyRef Name="Account_Number" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__InternetB__Custo__52593CB8">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="InternetBanking" Type="Self.InternetBanking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Customer_Id" />
+      </Principal>
+      <Dependent Role="InternetBanking">
+        <PropertyRef Name="Customer_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OtpReques__User___5812160E">
+    <End Role="InternetBanking" Type="Self.InternetBanking" Multiplicity="0..1" />
+    <End Role="OtpRequests" Type="Self.OtpRequests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InternetBanking">
+        <PropertyRef Name="User_Id" />
+      </Principal>
+      <Dependent Role="OtpRequests">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Payees__User_Id__5BE2A6F2">
+    <End Role="InternetBanking" Type="Self.InternetBanking" Multiplicity="0..1" />
+    <End Role="Payees" Type="Self.Payees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InternetBanking">
+        <PropertyRef Name="User_Id" />
+      </Principal>
+      <Dependent Role="Payees">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SupportMe__User___6B24EA82">
+    <End Role="InternetBanking" Type="Self.InternetBanking" Multiplicity="0..1" />
+    <End Role="SupportMessages" Type="Self.SupportMessages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InternetBanking">
+        <PropertyRef Name="User_Id" />
+      </Principal>
+      <Dependent Role="SupportMessages">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transacti__From___60A75C0F">
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
+    <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accounts">
+        <PropertyRef Name="Account_Number" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="From_Account" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transacti__To_Ac__619B8048">
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
+    <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accounts">
+        <PropertyRef Name="Account_Number" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="To_Account" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BankingDBModelStoreContainer">
+    <EntitySet Name="AccountRequest" EntityType="Self.AccountRequest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DebitCards" EntityType="Self.DebitCards" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InternetBanking" EntityType="Self.InternetBanking" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OtpRequests" EntityType="Self.OtpRequests" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Payees" EntityType="Self.Payees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SupportMessages" EntityType="Self.SupportMessages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Transactions" EntityType="Self.Transactions" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Accounts__Custom__4BAC3F29" Association="Self.FK__Accounts__Custom__4BAC3F29">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Accounts" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Customer__Servic__44FF419A" Association="Self.FK__Customer__Servic__44FF419A">
+      <End Role="AccountRequest" EntitySet="AccountRequest" />
+      <End Role="Customer" EntitySet="Customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DebitCard__Accou__66603565" Association="Self.FK__DebitCard__Accou__66603565">
+      <End Role="Accounts" EntitySet="Accounts" />
+      <End Role="DebitCards" EntitySet="DebitCards" />
+    </AssociationSet>
+    <AssociationSet Name="FK__InternetB__Accou__534D60F1" Association="Self.FK__InternetB__Accou__534D60F1">
+      <End Role="Accounts" EntitySet="Accounts" />
+      <End Role="InternetBanking" EntitySet="InternetBanking" />
+    </AssociationSet>
+    <AssociationSet Name="FK__InternetB__Custo__52593CB8" Association="Self.FK__InternetB__Custo__52593CB8">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="InternetBanking" EntitySet="InternetBanking" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OtpReques__User___5812160E" Association="Self.FK__OtpReques__User___5812160E">
+      <End Role="InternetBanking" EntitySet="InternetBanking" />
+      <End Role="OtpRequests" EntitySet="OtpRequests" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Payees__User_Id__5BE2A6F2" Association="Self.FK__Payees__User_Id__5BE2A6F2">
+      <End Role="InternetBanking" EntitySet="InternetBanking" />
+      <End Role="Payees" EntitySet="Payees" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SupportMe__User___6B24EA82" Association="Self.FK__SupportMe__User___6B24EA82">
+      <End Role="InternetBanking" EntitySet="InternetBanking" />
+      <End Role="SupportMessages" EntitySet="SupportMessages" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transacti__From___60A75C0F" Association="Self.FK__Transacti__From___60A75C0F">
+      <End Role="Accounts" EntitySet="Accounts" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transacti__To_Ac__619B8048" Association="Self.FK__Transacti__To_Ac__619B8048">
+      <End Role="Accounts" EntitySet="Accounts" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
