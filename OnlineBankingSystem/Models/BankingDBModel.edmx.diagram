@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bd10c1cb16354085b8ba1a119faac673" Name="Diagram1">
+        <EntityTypeShape EntityType="BankingDBModel.AccountRequest" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BankingDBModel.Account" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="BankingDBModel.Admin" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BankingDBModel.Customer" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="BankingDBModel.DebitCard" Width="1.5" PointX="7.5" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BankingDBModel.InternetBanking" Width="1.5" PointX="7.5" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BankingDBModel.OtpRequest" Width="1.5" PointX="9.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="BankingDBModel.Payee" Width="1.5" PointX="9.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BankingDBModel.SupportMessage" Width="1.5" PointX="9.75" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BankingDBModel.Transaction" Width="1.5" PointX="7.5" PointY="19.125" IsExpanded="true" />
+        <AssociationConnector Association="BankingDBModel.FK__Customer__Servic__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="BankingDBModel.FK__Accounts__Custom__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="BankingDBModel.FK__DebitCard__Accou__66603565" ManuallyRouted="false" />
+        <AssociationConnector Association="BankingDBModel.FK__InternetB__Accou__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="BankingDBModel.FK__Transacti__From___60A75C0F" ManuallyRouted="false" />
+        <AssociationConnector Association="BankingDBModel.FK__Transacti__To_Ac__619B8048" ManuallyRouted="false" />
+        <AssociationConnector Association="BankingDBModel.FK__InternetB__Custo__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="BankingDBModel.FK__OtpReques__User___5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="BankingDBModel.FK__Payees__User_Id__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="BankingDBModel.FK__SupportMe__User___6B24EA82" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
