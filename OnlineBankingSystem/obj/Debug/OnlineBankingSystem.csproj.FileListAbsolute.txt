@@ -77,3 +77,7 @@ C:\Final-Project\OnlineBankingSystem\obj\Debug\OnlineBankingSystem.csproj.CoreCo
 C:\Final-Project\OnlineBankingSystem\obj\Debug\OnlineBa.9F1512F5.Up2Date
 C:\Final-Project\OnlineBankingSystem\obj\Debug\OnlineBankingSystem.dll
 C:\Final-Project\OnlineBankingSystem\obj\Debug\OnlineBankingSystem.pdb
+C:\Final-Project\OnlineBankingSystem\bin\EntityFramework.dll
+C:\Final-Project\OnlineBankingSystem\bin\EntityFramework.SqlServer.dll
+C:\Final-Project\OnlineBankingSystem\bin\EntityFramework.xml
+C:\Final-Project\OnlineBankingSystem\bin\EntityFramework.SqlServer.xml
