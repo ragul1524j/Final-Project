@@ -1,0 +1,44 @@
+﻿@model IEnumerable<OnlineBankingSystem.Models.AccountRequest>
+@{
+    ViewBag.Title = "Pending Approvals";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header bg-primary text-white text-center">
+        Pending Account Requests
+    </div>
+
+    <table class="table table-bordered table-striped text-center">
+        <thead>
+            <tr>
+                <th>Service Ref No</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var u in Model)
+            {
+                <tr>
+                    <td>@u.Service_Reference_Number</td>
+                    <td>@u.First_Name @u.Last_Name</td>
+                    <td>@u.Email_Id</td>
+                    <td>@u.Mobile_Number</td>
+                    <td>
+                        @Html.ActionLink("View", "ViewDetails",
+                            new { id = u.Service_Reference_Number },
+                            new { @class = "btn btn-info btn-sm" })
+
+                        @Html.ActionLink("Approve", "Approve",
+                            new { id = u.Service_Reference_Number },
+                            new { @class = "btn btn-success btn-sm" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Admin Dashboard";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="alert alert-success text-center mt-3">
+    <marquee>🎉 Welcome Admin – Online Banking System Dashboard</marquee>
+</div>
+
+<div class="row text-center mt-4">
+    <div class="col-md-4">
+        <div class="panel panel-info">
+            <div class="panel-heading">Pending Approvals</div>
+            <div class="panel-body">
+                <h3 id="approvalCount">Loading...</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="panel panel-success">
+            <div class="panel-heading">Total Customers</div>
+            <div class="panel-body">
+                <h3 id="customerCount">Loading...</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="panel panel-warning">
+            <div class="panel-heading">Pending Support Messages</div>
+            <div class="panel-body">
+                <h3 id="messageCount">Loading...</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    fetch('/AdminApproval/GetDashboardCounts')
+        .then(r => r.json())
+        .then(d => {
+            document.getElementById("approvalCount").innerText = d.approvalCount;
+            document.getElementById("customerCount").innerText = d.customerCount;
+            document.getElementById("messageCount").innerText = d.messageCount;
+        });
+</script>

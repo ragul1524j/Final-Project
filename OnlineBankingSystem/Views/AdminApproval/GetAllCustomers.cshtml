@@ -1,0 +1,34 @@
+﻿@model IEnumerable<OnlineBankingSystem.Models.Customer>
+@{
+    ViewBag.Title = "Customers";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<table class="table table-bordered text-center">
+    <thead class="bg-dark text-white">
+        <tr>
+            <th>Customer ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Account</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>@c.Customer_Id</td>
+                <td>@c.Full_Name</td>
+                <td>@c.Email_Id</td>
+                <td>@c.Accounts.First().Account_Number</td>
+                <td>
+                    @Html.ActionLink("Transactions", "CustomerDetails",
+                        new { id = c.Customer_Id },
+                        new { @class = "btn btn-info btn-sm" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
